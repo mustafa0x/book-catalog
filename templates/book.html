@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ book_item.title }} | {{ block.super }}{% endblock %}
+{% block content %}
+<div class="left-float">
+  <h2 id="book-title">{{ book_item.title }}</h2>
+  {% if book_item.sub_title|length %}<h3 id="book-subtitle">{{ book_item.sub_title }}</h3>{% endif %}
+  <p id="series-item">part {{ book_item.series_item }} in {{ book_item.series }}</p>
+  <p id="book-price">Retail price: ${{ book_item.price }}{% if book_item.purchase_link %} - <a href="{{ book_item.purchase_link }}">purchase now</a>{% endif %}</p>
+</div>
+<img id="book-cover" src="{{ book_item.cover.url }}" alt="{{ book_item.title }}">
+<p class="book-desc">{{ book_item.description }}</p>
+<h4>Look Inside</h4>
+<ul>
+  {% if book_item.toc %}<li><a href="{{ book_item.toc }}">Table of Contents</a></li>{% endif %}
+  {% if book_item.extract %}<li><a href="{{ book_item.extract }}">Extract</a></li>{% endif %}
+</ul>
+<h4>Book Details</h4>
+<table id="book-details">
+  <tr>
+    <td>Pages: {{ book_item.pages }}</td>
+    <td>Published: {{ book_item.published|date:"Y" }}</td>
+  </tr>
+  <tr>
+    <td>Book Dimensions: {{ book_item.size }}</td>
+    <td>Binding: {{ book_item.binding }}</td>
+  </tr>
+  <tr>
+    <td>ISBN: {{ book_item.isbn }}</td>
+  </tr>
+</table>
+{% if book_item.reviews %}
+<h4>Reviews</h4>
+  <p>{{ book_item.reviews }}</p>
+{% endif %}
+{% endblock %}

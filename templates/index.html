@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{{options.home_content|safe}}
+<h2>News &amp; Updates</h2>
+<div id="news">
+  {% for news_item in news %}
+  <h3>{{ news_item.title }}</h3>
+  <p class="news-date">{{ news_item.date }}</p>
+  <p class="new-content">{{ news_item.content|safe }}</p>
+  {% endfor %}
+</div>
+{% endblock %}

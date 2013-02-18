@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Contact | {{ block.super }}{% endblock %}
+
+{% block content %}
+<h2>Contact Form</h2>
+<p></p>
+<form action="" method="post" id="contact-form">{% csrf_token %}
+    <p>{{ form.as_ul }}</p>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

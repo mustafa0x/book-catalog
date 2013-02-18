@@ -1,0 +1,6 @@
+A message has been received:
+
+Name: {{ name }}
+Email: {{ email }}
+Message:
+{{ body }}

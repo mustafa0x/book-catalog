@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Book Catalog | {{ block.super }}{% endblock %}
+{% block content %}
+<h2>Book Catalog</h2>
+<p id="pdfcatalog-link"><a href="{{pdf_catalog_dir}}/{{ options.pdf_catalog }}">Download the PDF catalog</a></p>
+<div class="series">
+  {% if series_all %}
+    {% for series in series_all %}
+  <h3 class="series-title"><a href="/catalog/{{ series.slug }}">{{ series.title }}</a></h3>
+  <div class="series-books">
+      {% for book in series.book_set.all %}
+    <div class="book-item">
+      <a href="/catalog/{{ series.slug }}/{{ book.slug }}"><img src="{{ book.cover.url }}" alt="" title="" class="book-cover"><h5>{{ book.title }}</h5><h6>{{ book.sub_title }}</h6></a>
+    </div>
+      {% endfor %}
+  </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

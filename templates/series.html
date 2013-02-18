@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ series_item.title }} | Book Catalog{% endblock %}
+{% block content %}
+<div class="left-float">
+  <h2>{{ series_item.title }}</h2>
+  {% if series_item.sub_title|length %}<h3>{{ series_item.sub_title }}</h3>{% endif %}
+</div>
+{% if series_item.image %}<img id="series-image" src="{{ series_item.image.url }}" alt="{{ series_item.title }}">{% endif %}
+<p class="series-desc">{{ series_item.description }}</p>
+<!--p class="series-reviews">{{ series_item.reviews }}</p-->
+<h3>Books</h3>
+{% for book in series_item.book_set.all %}
+<div class="book-item">
+  <a href="{{ book.slug }}"><img src="{{ book.cover.url }}" alt="" title="" class="book-cover"><h5>{{ book.title }}</h5><h6>{{ book.sub_title }}</h6></a>
+</div>
+{% endfor %}
+{% endblock %}
